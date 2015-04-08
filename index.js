@@ -137,6 +137,20 @@ ObservableCollection.prototype = {
   },
 
   /**
+   * Find the first item matching the criteria in the collection
+   * @param   {function(*, number)} fn
+   * @returns {*}
+   */
+  find: function(fn) {
+    for (var i=0; i<this.items.length; ++i) {
+      if (fn.call(this, this.items[i], i)) {
+        return this.items[i];
+      }
+    }
+    return undefined;
+  },
+
+  /**
    * Get an array representation of the collection
    * @returns {Array.<T>}
    */

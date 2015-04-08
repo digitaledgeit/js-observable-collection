@@ -1,20 +1,18 @@
 var collection = require('..');
-console.log(collection()
-  .on('added', function(item, at) {
-    console.log('added:', JSON.stringify(item) +'@'+ at, this.length);
+
+function update(item, index) {
+  //update the view
+}
+
+collection()
+  .on('added',    update)
+  .on('removed',  update)
+  .on('emptied',  update)
+  .append({name: 'Bill'})
+  .append({name: 'Mark'})
+  .prepend({name: 'Steve'})
+  .each(function(item) {
+    console.log(item);
   })
-  .on('removed', function(item, at) {
-    console.log('removed:', JSON.stringify(item) +'@'+ at, this.length);
-  })
-  .on('emptied', function(item, at) {
-    console.log('emptied:', this.length);
-  })
-  .append({name: 'James'})
-  .append({name: 'Loren'})
-  .append({name: 'Michelle'})
-  .each(function(person, at) {
-    console.log(person.name, at);
-  })
-  .removeAt(1)
-);
+;
 
