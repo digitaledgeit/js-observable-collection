@@ -49,29 +49,44 @@ ObservableCollection.prototype = {
   },
 
   /**
+   * Add the item to a specific position in
+   * @param     {*}       item
+   * @param     {number}  index
+   * @returns   {ObservableCollection}
+   */
+  insert: function(item, index) {
+
+    if (index < 0 || index > this.items.length) {
+      throw new RangeError('Index out of range.');
+    }
+
+    this.items.splice(index, 0, item);
+    this.emit('added', item, index);
+
+    return this;
+  },
+
+  /**
    * Add the item to the start of the collection
-   * @param     {*}   item
+   * @param     {*}       item
    * @returns   {ObservableCollection}
    */
   prepend: function(item) {
-    this.items.unshift(item);
-    this.emit('added', item, 0);
+    this.insert(item, 0);
     return this;
   },
 
   /**
    * Add the item to the end of the collection
-   * @param     {*}   item
+   * @param     {*}       item
    * @returns   {ObservableCollection}
    */
   append: function(item) {
-    this.items.push(item);
-    this.emit('added', item, this.items.length-1);
+    this.insert(item, this.items.length);
     return this;
   },
 
   //TODO: move(index, index)
-  //TODO: insertAt(index, item)
 
   /**
    * Remove the first occurrence of an item

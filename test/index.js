@@ -3,6 +3,86 @@ var Collection = require('..');
 
 describe('observable-collection', function() {
 
+  describe('.insert()', function() {
+
+    it('should increase the length of the collection', function() {
+
+      var collection = new Collection();
+
+      assert.equal(collection.length, 0);
+      collection.insert({name: 'John Smith'}, 0);
+      assert.equal(collection.length, 1);
+
+    });
+
+    it('should emit an event after the item is added', function(done) {
+
+      var collection = new Collection();
+
+      assert.equal(collection.length, 0);
+
+      collection.on('added', function(item, index) {
+        assert.equal(collection.length, 1);
+        assert.equal(index, 0);
+        done();
+      });
+
+      collection.insert({name: 'John Smith'}, 0);
+
+    });
+
+    it('should add the item at the start', function() {
+
+      var person1 = {name: 'Mad Dan'};
+      var person2 = {name: 'Ned Kelley'};
+      var person3 = {name: 'Mad Max'};
+
+      var collection = new Collection();
+      collection
+        .append(person1)
+        .append(person2)
+        .insert(person3, 0)
+      ;
+
+      assert.equal(collection.indexOf(person3), 0);
+
+    });
+    it('should add the item in the middle', function() {
+
+      var person1 = {name: 'Mad Dan'};
+      var person2 = {name: 'Ned Kelley'};
+      var person3 = {name: 'Mad Max'};
+
+      var collection = new Collection();
+      collection
+        .append(person1)
+        .append(person2)
+        .insert(person3, 1)
+      ;
+
+      assert.equal(collection.indexOf(person3), 1);
+
+    });
+
+    it('should add the item at the end', function() {
+
+      var person1 = {name: 'Mad Dan'};
+      var person2 = {name: 'Ned Kelley'};
+      var person3 = {name: 'Mad Max'};
+
+      var collection = new Collection();
+      collection
+        .append(person1)
+        .append(person2)
+        .insert(person3, collection.length)
+      ;
+
+      assert.equal(collection.indexOf(person3), collection.length-1);
+
+    });
+
+  });
+
   describe('.prepend()', function() {
 
     it('should increase the length of the collection', function() {
