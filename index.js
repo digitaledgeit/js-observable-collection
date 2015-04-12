@@ -57,7 +57,7 @@ ObservableCollection.prototype = {
   insert: function(item, index) {
 
     if (index < 0 || index > this.items.length) {
-      throw new RangeError('Index out of range.');
+      throw new RangeError('Index out of bounds');
     }
 
     this.items.splice(index, 0, item);
@@ -122,9 +122,8 @@ ObservableCollection.prototype = {
     }
 
     //remove the item from the collection
-    var item = this.items[index];
-    this.items.splice(index, 1);
-    this.emit('removed', item, index);
+    var removed = this.items.splice(index, 1);
+    this.emit('removed', removed[0], index);
 
     return this;
   },

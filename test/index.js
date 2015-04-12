@@ -17,17 +17,19 @@ describe('observable-collection', function() {
 
     it('should emit an event after the item is added', function(done) {
 
+      var person = {name: 'John Smith'};
       var collection = new Collection();
 
       assert.equal(collection.length, 0);
 
       collection.on('added', function(item, index) {
         assert.equal(collection.length, 1);
+        assert.equal(item, person);
         assert.equal(index, 0);
         done();
       });
 
-      collection.insert({name: 'John Smith'}, 0);
+      collection.insert(person, 0);
 
     });
 
@@ -97,17 +99,19 @@ describe('observable-collection', function() {
 
     it('should emit an event after the item is added', function(done) {
 
+      var person = {name: 'John Smith'};
       var collection = new Collection();
 
       assert.equal(collection.length, 0);
 
       collection.on('added', function(item, index) {
         assert.equal(collection.length, 1);
+        assert.equal(item, person);
         assert.equal(index, 0);
         done();
       });
 
-      collection.prepend({name: 'John Smith'});
+      collection.prepend(person);
 
     });
 
@@ -142,17 +146,19 @@ describe('observable-collection', function() {
 
     it('should emit an event after the item is added', function(done) {
 
+      var person = {name: 'John Smith'};
       var collection = new Collection();
 
       assert.equal(collection.length, 0);
 
       collection.on('added', function(item, index) {
         assert.equal(collection.length, 1);
+        assert.equal(item, person);
         assert.equal(index, collection.length-1);
         done();
       });
 
-      collection.append({name: 'John Smith'});
+      collection.append(person);
 
     });
 
@@ -205,8 +211,10 @@ describe('observable-collection', function() {
 
       assert.equal(collection.length, 2);
 
-      collection.on('removed', function() {
+      collection.on('removed', function(item, index) {
         assert.equal(collection.length, 1);
+        assert.equal(item, person2);
+        assert.equal(index, 1);
         done();
       });
 

@@ -53,5 +53,11 @@ Ann `Array` wrapper that emits events when the `Array` is modified.
 ### Events
 
 #### #added
+- item
+- index
+
 #### #removed
+- item
+- index
+
 #### #emptied
