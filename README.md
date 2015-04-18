@@ -28,12 +28,27 @@ Ann `Array` wrapper that emits events when the `Array` is modified.
 
 ## API
 
+### new Collection()
+
+Create a new collection.
+
 ### Properties
 
 #### .first : *
+
+Get the first item in the collection.
+
 #### .last : *
+
+Get the last item in the collection.
+
 #### .empty : boolean
+
+Check whether the collection is empty.
+
 #### .length : number
+
+Get the length of the collection.
 
 ### Methods
 
