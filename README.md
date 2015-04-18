@@ -1,6 +1,6 @@
 # observable-collection
 
-Ann `Array` wrapper that emits events when the `Array` is modified.
+An `Array` wrapper that emits events when the underlying `Array` is modified.
 
 ## Installation
 
