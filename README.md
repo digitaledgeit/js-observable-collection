@@ -4,7 +4,7 @@ An `Array` wrapper that emits events when the underlying `Array` is modified.
 
 ## Installation
 
-    $ npm install --save digitaledgeit/observable-collection
+    $ npm install --save digitaledgeit-observable-collection
 
 ## Usage
     
